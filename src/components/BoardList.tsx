@@ -1,112 +1,44 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Tr from './board/Tr';
-import Post from './board/Post';
-import Modal from './board/Modal';
+import {Board} from '../dto/Board';
+import styled from "styled-components";
+interface Iprops {
+  xs : number;
+  sm : number;
+}
+const Row = styled.ul``;
+const Col = styled.li<Iprops>`
+`;
 
-const Board = () => {
-  const [info, setInfo] = useState([]);
-  const [selected, setSelected] = useState('');
-  const [modalOn, setModalOn] = useState(false);
+const BoardList: React.FC = () => {
+  const [boardList, setBoardList] = useState<Array<Board>>([]);
+ 
 
-  // 고유 값으로 사용 될 id
-  // ref 를 사용하여 변수 담기
-  const nextId = useRef(11);
-
-//더미 데이터 호출
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(res => setInfo(res.data))
-      .catch(err => console.log(err));
+    getBoardList();
   }, []);
-
-  const handleSave = (data) => {
-    //데이터 수정하기
-    if (data.id) { //수정 데이터에는 id가 존재
-      setInfo(
-        info.map(row => data.id === row.id ? {
-          id: data.id,
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          website: data.website,
-        } : row))
-
-    } else { //바로 추가하기
-      // 데이터 추가하기 방법1
-      // setInfo((prev) => {
-      //   return [ ...prev, {
-      //     id: nextId.current,
-      //     name: data.name,
-      //     email: data.email,
-      //     phone: data.phone,
-      //     website: data.website
-      //   }]
-      // });
-
-      //데이터 추가하기 방법2
-      setInfo(info => info.concat(
-        {
-          id: nextId.current,
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          website: data.website
-        }
-      ))
-      nextId.current += 1;
-    }
+ 
+  const getBoardList = async () => {
+    // res는 http response의 header + body를 모두 갖고 있다.
+    const res  = await axios.get('http://jsonplaceholder.typicode.com/users');
+    console.log(res);
+    setBoardList(res.data);
   }
-
-  const handleRemove = (id) => {
-    setInfo(info => info.filter(item => item.id !== id));
-  }
-
-  const handleEdit = (item) => {
-    setModalOn(true);
-    const selectedData = {
-      id: item.id,
-      name: item.name,
-      email: item.email,
-      phone: item.phone,
-      website: item.website
-    };
-    console.log(selectedData);
-    setSelected(selectedData);
-  };
-
-  const handleCancel = () => {
-    setModalOn(false);
-  }
-
-  const handleEditSubmit = (item) => {
-    console.log(item);
-    handleSave(item);
-    setModalOn(false);
-  }
-
+ 
   return (
-    <div className="container max-w-screen-lg mx-auto">
-      <div className='text-xl font-bold mt-5 mb-3 text-center'>고객 정보 리스트</div>
-      <table className="min-w-full table-auto text-gray-800">
-        <thead className='justify-between'>
-          <tr className='bg-gray-800'>
-            <th className="text-gray-300 px-4 py-3">Id.</th>
-            <th className="text-gray-300 px-4 py-3">Name</th>
-            <th className="text-gray-300 px-4 py-3">Email</th>
-            <th className="text-gray-300 px-4 py-3">Phone No.</th>
-            <th className="text-gray-300 px-4 py-3">Website</th>
-            <th className="text-gray-300 px-4 py-3">Edit</th>
-            <th className="text-gray-300 px-4 py-3">Delete</th>
-          </tr>
-        </thead>
-        <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit} />
-      </table>
-      <Post onSaveData={handleSave} />
-      {modalOn && <Modal selectedData={selected} handleCancel={handleCancel} 
-      handleEditSubmit={handleEditSubmit} />}
-    </div>
+    <>
+    {
+      boardList.map((board: Board)=>
+        <Row>
+          <Col xs={8} sm={8}>{board.id}</Col>
+          <Col xs={4} sm={4}>{board.name}</Col>
+          <Col xs={4} sm={4}>{board.username}</Col>
+          <Col xs={4} sm={4}>{board.phone}</Col>
+          <Col xs={4} sm={4}>{board.website}</Col>
+        </Row>)
+    }
+  </>
   );
 };
 
-export default Board;
+export default BoardList;

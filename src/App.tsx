@@ -1,17 +1,10 @@
-import * as React from 'react';
+import React from 'react';
+import BoardList from "./components/BoardList";
  
-import { Profile } from './components/Profile';
-import { Counter } from './components/Counter';
-import { TodoList } from './components/TodoList';
- 
-const App = () => {
+function App() {
   return (
-    <div className='App'>
-      <Profile name='name' job='job' />
-      <Counter />
-      <TodoList />
-    </div>
+      <BoardList></BoardList>
   );
-};
+}
  
 export default App;
