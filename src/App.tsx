@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import * as React from 'react';
+ 
+import { Profile } from './components/Profile';
+import { Counter } from './components/Counter';
+import { TodoList } from './components/TodoList';
+ 
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Profile name='name' job='job' />
+      <Counter />
+      <TodoList />
     </div>
   );
-}
-
+};
+ 
 export default App;
