@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Board } from "../dto/Board";
+import { IBoard } from "../dto/Board";
 //import styled from "styled-components";
 import "./scss/BoardList.scss";
 import { Button, Row, Col } from "react-bootstrap";
 import { useQuery } from "react-query";
-import { BoardState } from "./Atoms";
+// import { BoardState } from "./Atoms";
 // interface Iprops {
 //   xs : number;
 //   sm : number;
@@ -27,7 +27,7 @@ const BoardList: React.FC = (props: any) => {
 
   //useQuery hook은 fetcher 함수를 부름 -> fetcher 함수가 loading중이라면 rect query는 isLoading에서 알려줌
   /* const { isLoading, data } = useQuery<Board[]>("boardList", getdata); */
-  const [boardList, setBoardList] = useState<Board[]>([]);
+  const [boardList, setBoardList] = useState<IBoard[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
@@ -67,7 +67,7 @@ const BoardList: React.FC = (props: any) => {
           </Button>
         </Col>
       </Row>
-      {boardList.map((board: Board) => (
+      {boardList.map((board: IBoard) => (
         <Row className="py-2 board">
           <Col xs={4} sm={4}>
             {board.id}

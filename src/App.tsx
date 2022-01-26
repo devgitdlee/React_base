@@ -1,5 +1,6 @@
 import React from "react";
 import BoardList from "./components/BoardList";
+import Board from "./components/Board";
 import Container from "react-bootstrap/Container";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BoardRegister from "./components/BoardRegister";
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<BoardList />} />
+          <Route path="/board" element={<Board />} />
           <Route path="/add" element={<BoardRegister />} />
         </Routes>
       </BrowserRouter>

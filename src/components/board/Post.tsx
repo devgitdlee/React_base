@@ -1,0 +1,156 @@
+import React, { useState } from "react";
+import { IBoard } from "../../dto/Board";
+type PostProps = {
+  onSaveData: (Array: IBoard) => void; // 아무것도 리턴하지 않는다는 함수를 의미합니다.
+};
+const Post = ({ onSaveData }: PostProps) => {
+  //const [form, setForm] = useState<IBoard>();
+  const [form, setForm] = useState({
+    name: "",
+    username: "",
+    email: "",
+    phone: "",
+    website: "",
+  });
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    onSaveData(form);
+    console.log(form);
+    setForm({
+      name: "",
+      username: "",
+      email: "",
+      phone: "",
+      website: "",
+    });
+  };
+
+  return (
+    <>
+      <div className="text-xl font-bold mt-5 mb-2 text-center">
+        고객 추가하기
+      </div>
+      <form className="mt-3" onSubmit={handleSubmit}>
+        <div className="flex flex-col md:flex-row mb-1">
+          <label
+            htmlFor="name"
+            className="w-full flex-1 mx-2 text-xs font-semibold 
+                    text-gray-600 uppercase"
+          >
+            Name
+            <input
+              className="w-full py-3 px-1 mt-1 
+                    text-gray-800 appearance-none 
+                    border-2 border-gray-100
+                    focus:text-gray-500 focus:outline-none focus:border-gray-200"
+              required
+              placeholder="이름을 입력해주세요"
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+            />
+          </label>
+          <label
+            htmlFor="username"
+            className="w-full flex-1 mx-2 text-xs font-semibold 
+                    text-gray-600 uppercase"
+          >
+            UserName
+            <input
+              className="w-full py-3 px-1 mt-1 
+                    text-gray-800 appearance-none 
+                    border-2 border-gray-100
+                    focus:text-gray-500 focus:outline-none focus:border-gray-200"
+              required
+              placeholder="유저명을 입력해주세요"
+              type="text"
+              name="username"
+              value={form.username}
+              onChange={handleChange}
+            />
+          </label>
+          <label
+            htmlFor="email"
+            className="w-full flex-1 mx-2 text-xs font-semibold 
+                    text-gray-600 uppercase"
+          >
+            Email
+            <input
+              className="w-full py-3 px-1 mt-1 
+                    text-gray-800 appearance-none 
+                    border-2 border-gray-100
+                    focus:text-gray-500 focus:outline-none focus:border-gray-200"
+              required
+              placeholder="이메일 주소를 입력해주세요"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="flex flex-col md:flex-row">
+          <label
+            htmlFor="phone"
+            className="w-full flex-1 mx-2 text-xs font-semibold 
+                    text-gray-600 uppercase"
+          >
+            Phone
+            <input
+              className="w-full py-3 px-1 mt-1 
+                    text-gray-800 appearance-none 
+                    border-2 border-gray-100
+                    focus:text-gray-500 focus:outline-none focus:border-gray-200"
+              required
+              placeholder="핸드폰 번호를 입력해주세요"
+              type="text"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+            />
+          </label>
+          <label
+            htmlFor="website"
+            className="w-full flex-1 mx-2 text-xs font-semibold 
+                    text-gray-600 uppercase"
+          >
+            Website
+            <input
+              className="w-full py-3 px-1 mt-1 
+                    text-gray-800 appearance-none 
+                    border-2 border-gray-100
+                    focus:text-gray-500 focus:outline-none focus:border-gray-200"
+              required
+              placeholder="사이트 주소를 입력해주세요"
+              type="text"
+              name="website"
+              value={form.website}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="text-center">
+          <button
+            className="bg-blue-400 py-2 text-center px-10 md:px-12 md:py-3 text-white 
+                    rounded text-xl md:text-base mt-4"
+            type="submit"
+          >
+            저장
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};
+
+export default Post;

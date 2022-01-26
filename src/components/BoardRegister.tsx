@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
-import { Board } from "../dto/Board";
+import { IBoard } from "../dto/Board";
 
 const BoardRegister: React.FC = (props: any) => {
   const [validated, setValidated] = useState(false);
-  const [boardList, setBoardList] = useState<Array<Board>>([]);
+  const [boardList, setBoardList] = useState<Array<IBoard>>([]);
   const nextId = useRef(11);
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ const BoardRegister: React.FC = (props: any) => {
     addBoard(board);
   };
 
-  const addBoard = async (board: Board) => {
+  const addBoard = async (board: IBoard) => {
     //const res = await axios.post("/api/board", board);
 
     //console.log(res);
