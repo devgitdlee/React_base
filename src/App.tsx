@@ -3,6 +3,8 @@ import BoardList from "./components/BoardList";
 import Board from "./components/Board";
 import ShopList from "./components/ShopList";
 import Container from "react-bootstrap/Container";
+import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BoardRegister from "./components/BoardRegister";
 import {
@@ -16,6 +18,7 @@ import {
 function App() {
   return (
     <Container className="p-5">
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<BoardList />} />
