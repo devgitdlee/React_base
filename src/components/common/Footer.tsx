@@ -1,56 +1,53 @@
 import React from "react";
-//import Footer from "./styles/styles";
-// Styles
-import { Container, Wrapper, Column, Row, Link, Title } from "./styles/styles";
-
-import { Icon } from "./styles/icons.styles";
+import Footer from "./styles/FooterStyles";
+import Icon from "./styles/IconsStyles";
 
 export function FooterContainer() {
   return (
     <Footer>
-      <Wrapper>
-        <Row>
-          <Column>
-            <Title>About Us</Title>
-            <Link href="#">Story</Link>
-            <Link href="#">Clients</Link>
-            <Link href="#">Testimonials</Link>
-          </Column>
-          <Column>
-            <Title>Services</Title>
-            <Link href="#">Marketing</Link>
-            <Link href="#">Consulting</Link>
-            <Link href="#">Development</Link>
-            <Link href="#">Design</Link>
-          </Column>
-          <Column>
-            <Title>Contact Us</Title>
-            <Link href="#">United States</Link>
-            <Link href="#">United Kingdom</Link>
-            <Link href="#">Australia</Link>
-            <Link href="#">Support</Link>
-          </Column>
-          <Column>
-            <Title>Social</Title>
-            <Link href="#">
+      <Footer.Wrapper>
+        <Footer.Row>
+          <Footer.Column>
+            <Footer.Title>About Us</Footer.Title>
+            <Footer.Link href="#">Story</Footer.Link>
+            <Footer.Link href="#">Clients</Footer.Link>
+            <Footer.Link href="#">Testimonials</Footer.Link>
+          </Footer.Column>
+          <Footer.Column>
+            <Footer.Title>Services</Footer.Title>
+            <Footer.Link href="#">Marketing</Footer.Link>
+            <Footer.Link href="#">Consulting</Footer.Link>
+            <Footer.Link href="#">Development</Footer.Link>
+            <Footer.Link href="#">Design</Footer.Link>
+          </Footer.Column>
+          <Footer.Column>
+            <Footer.Title>Contact Us</Footer.Title>
+            <Footer.Link href="#">United States</Footer.Link>
+            <Footer.Link href="#">United Kingdom</Footer.Link>
+            <Footer.Link href="#">Australia</Footer.Link>
+            <Footer.Link href="#">Support</Footer.Link>
+          </Footer.Column>
+          <Footer.Column>
+            <Footer.Title>Social</Footer.Title>
+            <Footer.Link href="#">
               <Icon className="fab fa-facebook-f" />
               Facebook
-            </Link>
-            <Link href="#">
+            </Footer.Link>
+            <Footer.Link href="#">
               <Icon className="fab fa-instagram" />
               Instagram
-            </Link>
-            <Link href="#">
+            </Footer.Link>
+            <Footer.Link href="#">
               <Icon className="fab fa-youtube" />
               Youtube
-            </Link>
-            <Link href="#">
+            </Footer.Link>
+            <Footer.Link href="#">
               <Icon className="fab fa-twitter" />
               Twitter
-            </Link>
-          </Column>
-        </Row>
-      </Wrapper>
+            </Footer.Link>
+          </Footer.Column>
+        </Footer.Row>
+      </Footer.Wrapper>
     </Footer>
   );
 }
