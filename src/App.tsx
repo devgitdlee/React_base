@@ -4,7 +4,7 @@ import Board from "./components/Board";
 import ShopList from "./components/ShopList";
 import Container from "react-bootstrap/Container";
 import Header from "./components/common/Header";
-import Footer from "./components/common/Footer";
+import { FooterContainer } from "./components/common/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BoardRegister from "./components/BoardRegister";
 import {
@@ -27,6 +27,7 @@ function App() {
           <Route path="/add" element={<BoardRegister />} />
         </Routes>
       </BrowserRouter>
+      <FooterContainer />
     </Container>
   );
 }
